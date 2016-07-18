@@ -68,15 +68,15 @@ class Signin extends AbstractAction {
 
 			<div class="form-group">
 				<div class="col-sm-12">
-					<input name="User" type="text" value="<?php echo $vb->User; ?>"
-						placeholder="Username" class="form-control input-lg" />
+					<input name="email" type="text" value="<?php echo $vb->email; ?>"
+						placeholder="Email" class="form-control input-lg" />
 				</div>
 
 			</div>
 			<div class="form-group">
 				<div class="col-sm-12">
-					<input name="Passcode" id="Passcode" type="password"
-						placeholder="Password" value="<?php echo $vb->Passcode; ?>"
+					<input name="passcode" id="passcode" type="password"
+						placeholder="Password" value="<?php echo $vb->passcode; ?>"
 						class="form-control input-lg" />
 				</div>
 
@@ -84,7 +84,7 @@ class Signin extends AbstractAction {
 			<div class="form-group">
 				<div class="col-sm-12" align="right">
 					<button type="submit" name="ACTION_REFERENCE" value="Login"
-						class="btn btn-primary form-control input-lg">Login</button>
+						class="btn btn-primary form-control input-lg">Sign in</button>
 				</div>
 			</div>
 		</div>
@@ -99,11 +99,11 @@ $(function() {
 	{
 		// Specify the validation rules
 		rules : {
-			User : {
+			email : {
 				required : true,
 				minlength : 2,
 			},
-			Passcode : {
+			passcode : {
 				required : true,
 				minlength : 2,
 			}

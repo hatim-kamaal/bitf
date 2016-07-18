@@ -34,6 +34,8 @@
 						<?php if($this->vb->isUserLoggedIn) { ?>
 						<li><a href='<?php echo $fm->getUrl("donation_history");?>'>Donation History</a></li>
 						<li><a href='<?php echo $fm->getUrl("txnupload");?>'>Transaction Upload</a></li>
+						<li><a href='<?php echo $fm->getUrl("add_ticket");?>'>Add Ticket</a></li>
+						
 						<?php } ?>
 					</ul>
 					<ul class="nav navbar-nav navbar-right">

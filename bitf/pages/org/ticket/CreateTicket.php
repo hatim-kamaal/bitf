@@ -1,10 +1,10 @@
 <?php
-class Register extends AbstractAction {
+class CreateTicket extends AbstractAction {
 	
 	/**
 	 */
 	public function isRestricted() {
-		return false;
+		return true;
 	}
 	/**
 	 * (non-PHPdoc)
@@ -19,10 +19,10 @@ class Register extends AbstractAction {
 	public function doRegister() {
 		
 		$code = $this->getSession("code");
-		echo "Captch" . $this->vb->captcha . " and  " . $code;
+		echo "Captch" . $this->vb->Captcha . " and  " . $code;
 		
 		// Captcha matches?
-		if (strcmp ( $this->vb->captcha, $code ) != 0) {
+		if (strcmp ( $this->vb->Captcha, $code ) != 0) {
 			$this->vb->message = "Invalid Captcha input";
 			return;
 		}
@@ -43,7 +43,7 @@ class Register extends AbstractAction {
 			
 			$rs = $this->db->update ( "INSERT_REGISTRATION", $this->vb );
 			
-			echo "crossed insert registration." . $this->db->getErrorMsg();
+			echo "crossed insert registration." . $rs;
 			
 			//$this->db->addUnderRegistrationDetails ( $this->viewbean->Name, $this->viewbean->Email, $code );
 			$this->redirect ( $this->path->url_pwdchng );
@@ -100,9 +100,46 @@ class Register extends AbstractAction {
 		<?php } ?>
 
 		<div class="form-group">
-			<div class="alert alert-primary">
-				Hello,<br> Provide your valid email address to recieve the
-				registration code.
+			<label for="studentname" class="col-sm-3 control-label">Student Name</label>
+			<div class="col-sm-5">
+				<input name="studentname" id="studentname" type="text"
+					value="<?php echo $vb->studentname; ?>" class="form-control" />
+			</div>
+		</div>
+		<div class="form-group">
+			<label for="studentitsid" class="col-sm-3 control-label">Student ITSID</label>
+			<div class="col-sm-5">
+				<input name="studentitsid" id="studentitsid" type="text"
+					value="<?php echo $vb->studentitsid; ?>" class="form-control" />
+			</div>
+		</div>
+		<div class="form-group">
+			<label for="mohalla" class="col-sm-3 control-label">Mohalla</label>
+			<div class="col-sm-5">
+				<select class="form-control"
+					name="mohalla">
+					<option value="Saifee">Saifee</option>
+					<option value="Burhani">Burhani</option>
+					<option value="Fakhri">Fakhri</option>
+					<option value="Mohammedi">Mohammedi</option>
+					<option value="Kasarwadi">Kasarwadi</option>
+					<option value="Burhani_Colony">Burhani Colony</option>
+					<option value="Burhani_Park">Burhani Park</option>
+					<option value="Fatema_Nagar">Fatema Nagar</option>
+				</select>
+			</div>
+		</div>
+		<div class="form-group">
+			<label for="address" class="col-sm-3 control-label">Address</label>
+			<div class="col-sm-5">
+				<textarea name="address" id="address" class="form-control"><?php echo $vb->address; ?></textarea>
+			</div>
+		</div>
+		<div class="form-group">
+			<label for="mobile" class="col-sm-3 control-label">Contact Number</label>
+			<div class="col-sm-5">
+				<input name="mobile" id="mobile" type="text"
+					value="<?php echo $vb->mobile; ?>" class="form-control" />
 			</div>
 		</div>
 		<div class="form-group">
@@ -113,38 +150,75 @@ class Register extends AbstractAction {
 			</div>
 		</div>
 		<div class="form-group">
-			<label for="password" class="col-sm-3 control-label">Password</label>
+			<label for="school" class="col-sm-3 control-label">School</label>
 			<div class="col-sm-5">
-				<input name="password" id="password" type="password"
-					class="form-control" />
+				<input name="school" id="school" type="text"
+					value="<?php echo $vb->school; ?>" class="form-control" />
 			</div>
 		</div>
 		<div class="form-group">
-			<label for="fullname" class="col-sm-3 control-label">Full Name</label>
+			<label for="standard" class="col-sm-3 control-label">Standard</label>
 			<div class="col-sm-5">
-				<input name="fullname" id="fullname" type="text"
-					value="<?php echo $vb->fullname; ?>" class="form-control" />
+				<input name="standard" id="standard" type="text"
+					value="<?php echo $vb->standard; ?>" class="form-control" />
 			</div>
 		</div>
 		<div class="form-group">
-			<label for="itsid" class="col-sm-3 control-label">ITS ID</label>
+			<label for="board" class="col-sm-3 control-label">Examination Board</label>
 			<div class="col-sm-5">
-				<input name="itsid" id="itsid" type="text"
-					value="<?php echo $vb->itsid; ?>" class="form-control" />
+				<input name="board" id="board" type="text"
+					value="<?php echo $vb->board; ?>" class="form-control" />
 			</div>
 		</div>
 		<div class="form-group">
-			<label for="mobile" class="col-sm-3 control-label">Mobile Number</label>
+			<label for="madrasa" class="col-sm-3 control-label">Madrasa</label>
 			<div class="col-sm-5">
-				<input name="mobile" id="mobile" type="text"
-					value="<?php echo $vb->mobile; ?>" class="form-control" />
+				<input name="madrasa" id="madrasa" type="text"
+					value="<?php echo $vb->madrasa; ?>" class="form-control" />
+			</div>
+		</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+		<div class="form-group">
+			<label for="Pwd" class="col-sm-3 control-label">Password</label>
+			<div class="col-sm-5">
+				<input name="Pwd" id="Pwd" type="password"
+					value="<?php echo $vb->Pwd; ?>" class="form-control" />
 			</div>
 		</div>
 		<div class="form-group">
-			<label for="pannumber" class="col-sm-3 control-label">PAN Number</label>
+			<label for="FName" class="col-sm-3 control-label">First Name</label>
 			<div class="col-sm-5">
-				<input name="pannumber" id="pannumber" type="text"
-					value="<?php echo $vb->pannumber; ?>" class="form-control" />
+				<input name="FName" id="FName" type="text"
+					value="<?php echo $vb->FName; ?>" class="form-control" />
+			</div>
+		</div>
+		<div class="form-group">
+			<label for="LName" class="col-sm-3 control-label">Last Name</label>
+			<div class="col-sm-5">
+				<input name="LName" id="LName" type="text"
+					value="<?php echo $vb->LName; ?>" class="form-control" />
 			</div>
 		</div>
 		<div class="form-group">
@@ -155,16 +229,18 @@ class Register extends AbstractAction {
 			</div>
 		</div>
 		<div class="form-group">
-			<label for="captcha" class="col-sm-3 control-label"> Enter captcha
+			<label for="Captcha" class="col-sm-3 control-label"> Enter captcha
 				code</label>
 			<div class="col-sm-5">
-				<input name="captcha" id="captcha" type="text" class="form-control" />
+				<input name="Captcha" id="Captcha" type="text" class="form-control" />
 			</div>
 		</div>
+
 		<div class="form-group">
 			<div class="col-sm-offset-3 col-sm-5" align="right">
 				<button type="submit" name="ACTION_REFERENCE" value="Register"
-					class="btn btn-primary">Register</button>
+					class="btn btn-primary">Proceed</button>
+				&nbsp;&nbsp;&nbsp;&nbsp; <a href="register"></a>
 			</div>
 		</div>
 	</div>
@@ -176,30 +252,20 @@ $(function() {
 	{
 		// Specify the validation rules
 		rules : {
-			email : {
+			FName : {
+				required : true,
+				minlength : 2,
+			},
+			LName : {
+				required : true,
+				minlength : 3,
+			},
+			Email : {
 				required : true,
 				email : true
 			},
-			password : {
+			Captcha : {
 				required : true,
-				minlength : 6
-			},
-			fullname : {
-				required : true,
-			},
-			mobile : {
-				required : true,
-				number : true,
-				minlength : 10,
-				maxlength : 10
-			},
-			itsid : {
-				required : true,
-				minlength : 8,
-				maxlength : 8
-			},
-			captcha : {
-				required : true
 			}
 		},
 		submitHandler : function(form) {
@@ -207,8 +273,6 @@ $(function() {
 		}
 	});
 });
-
-
 </script>
 
 <?php
