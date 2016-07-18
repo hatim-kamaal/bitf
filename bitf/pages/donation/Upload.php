@@ -1,5 +1,5 @@
 <?php
-class Signin extends AbstractAction {
+class History extends AbstractAction {
 
 	/**
 	 * (non-PHPdoc)
@@ -11,7 +11,7 @@ class Signin extends AbstractAction {
 
 	/**
 	 */
-	public function doLogin() {
+	public function doSearch() {
 		$result = $this->db->read ( "SIGNIN", $this->vb );
 		if (!isset ( $result )) {
 			$this->vb->message = "Invalid Username or Password";
@@ -24,8 +24,8 @@ class Signin extends AbstractAction {
 		$fname = $row[2];
 		$lname = $row[3];
 		$status = $row[4];
-		
-		
+
+
 			
 		if( !$status ) {
 			$this->vb->message = "Your account is deactivated. Contact the system admin.";
@@ -53,7 +53,7 @@ class Signin extends AbstractAction {
 
 	<div class="panel panel-primary">
 		<div class="panel-heading">
-			<h3 class="panel-title">Login Area</h3>
+			<h3 class="panel-title">Input Area</h3>
 		</div>
 		<div class="panel-body">
 
@@ -65,26 +65,26 @@ class Signin extends AbstractAction {
 			</div>
 			<?php } ?>
 
+			<div class="form-group">
+				<label for="StartDate" class="col-sm-3 control-label">Start Date (MM/YYYY)</label>
+				<div class="col-sm-5">
+					<input name="StartDate" id="StartDate" type="text"
+						value="<?php echo $vb->StartDate; ?>" class="form-control" />
+				</div>
+			</div>
 
 			<div class="form-group">
-				<div class="col-sm-12">
-					<input name="User" type="text" value="<?php echo $vb->User; ?>"
-						placeholder="Username" class="form-control input-lg" />
+				<label for="EndDate" class="col-sm-3 control-label">End Date (MM/YYYY)</label>
+				<div class="col-sm-5">
+					<input name="EndDate" id="EndDate" type="text"
+						value="<?php echo $vb->EndDate; ?>" class="form-control" />
 				</div>
-
 			</div>
-			<div class="form-group">
-				<div class="col-sm-12">
-					<input name="Passcode" id="Passcode" type="password"
-						placeholder="Password" value="<?php echo $vb->Passcode; ?>"
-						class="form-control input-lg" />
-				</div>
-
-			</div>
+			
 			<div class="form-group">
 				<div class="col-sm-12" align="right">
-					<button type="submit" name="ACTION_REFERENCE" value="Login"
-						class="btn btn-primary form-control input-lg">Login</button>
+					<button type="submit" name="ACTION_REFERENCE" value="Search"
+						class="btn btn-primary form-control input-lg">Search</button>
 				</div>
 			</div>
 		</div>

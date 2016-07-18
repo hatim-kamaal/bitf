@@ -1,11 +1,14 @@
 <?php
 
 //define ( "APP_FOLDER", "/hats/framework/", true );
-define ( "APP_FOLDER", "/bitf/bitf/", true );
+define ( "APP_FOLDER", "/bitf/bitf", true );
 define ( "DB_ADR", "localhost", true );
 define ( "DB_USR", "root", true );
 define ( "DB_PWD", "", true );
 define ( "DB_NME", "bitf", true );
+
+define ( "DEBUG_MODE", true, true );
+
 
 
 
@@ -139,6 +142,8 @@ class Database {
 				$string = str_replace ( "~$opt~", $options [$opt], $string );
 			}
 		}
+		
+		//echo "Query . [$string]";
 		return $string;
 	}
 	
@@ -317,11 +322,11 @@ abstract class AbstractAction {
 			return;
 		}
 		
-		$lastReq = $this->getSession ( "lastRequest" );
+		$lastReq = $this->getSession ( "LAST_REQUEST" );
 		if (isset ( $lastReq )) {
 			$session_life = time () - $lastReq;
 			if ($this->vb->isUserLoggedIn && $session_life < 3601) {
-				$this->setSession ( "lastRequest", time () );
+				$this->setSession ( "LAST_REQUEST", time () );
 			} else {
 				$this->clearSession ();
 				$this->setSession ( "ErrorMessage", "Your session has been expired." );

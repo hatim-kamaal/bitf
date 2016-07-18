@@ -17,26 +17,38 @@ class Register extends AbstractAction {
 	/**
 	 */
 	public function doRegister() {
+		
+		$code = $this->getSession("code");
+		echo "Captch" . $this->vb->Captcha . " and  " . $code;
+		
 		// Captcha matches?
-		if (strcmp ( $this->viewbean->Captcha, $this->ssnmgr->code ) != 0) {
-			$this->viewbean->message = "Invalid Captcha input";
+		if (strcmp ( $this->vb->Captcha, $code ) != 0) {
+			$this->vb->message = "Invalid Captcha input";
 			return;
 		}
 		
-		$model = new ModelBean ();
-		$model->EMAIL = $this->viewbean->Email;
-		$rs = $this->database->read ( "SELECT_CHECK_EMAIL_EXIST", $model );
+		$rs = $this->db->read ( "CHECK_EMAIL_EXIST", $this->vb );
 		if (isset ( $rs )) {
-			$this->viewbean->message = "This email id is already registered with us. Try forget password.";
+			$this->vb->message = "This email id is already registered with us. Try forget password.";
 			return;
 		}
+		
+		echo "crossed check email exist.";
 		
 		$code = rand ( 100000, 9999999 );
-		if ($this->sendEmailForActivation ( $this->viewbean->Name, $this->viewbean->Email, $code )) {
-			$this->database->addUnderRegistrationDetails ( $this->viewbean->Name, $this->viewbean->Email, $code );
+		
+		if ($this->sendEmailForActivation ( $this->vb, $code )) {
+			
+			echo "crossed send email.";
+			
+			$rs = $this->db->update ( "INSERT_REGISTRATION", $this->vb );
+			
+			echo "crossed insert registration." . $rs;
+			
+			//$this->db->addUnderRegistrationDetails ( $this->viewbean->Name, $this->viewbean->Email, $code );
 			$this->redirect ( $this->path->url_pwdchng );
 		} else {
-			$this->viewbean->message = "Sorry! try again.";
+			$this->vb->message = "Sorry! try again.";
 		}
 	}
 	
@@ -45,7 +57,11 @@ class Register extends AbstractAction {
 	 * @param unknown $email        	
 	 * @param unknown $code        	
 	 */
-	function sendEmailForActivation($name, $email, $code) {
+	function sendEmailForActivation($vb, $code) {
+		
+		$name = $vb->FName;
+		$email = $vb->Email;
+		
 		$msg = 'WhatsApp Service by GoldenHats.com<br><br>
 			Hello ' . $name . ',<br><br>
 			You have registered this email address with us.<br>
@@ -59,7 +75,8 @@ class Register extends AbstractAction {
 		$emailData->Email = $email;
 		$emailData->FullName = $name;
 		
-		return Util::sendEmail ( $emailData );
+		//return Util::sendEmail ( $emailData );
+		return true;
 	}
 	public function page() {
 		global $fm, $vb, $db;
@@ -93,6 +110,13 @@ class Register extends AbstractAction {
 			<div class="col-sm-5">
 				<input name="Email" id="Email" type="text"
 					value="<?php echo $vb->Email; ?>" class="form-control" />
+			</div>
+		</div>
+		<div class="form-group">
+			<label for="Pwd" class="col-sm-3 control-label">Password</label>
+			<div class="col-sm-5">
+				<input name="Pwd" id="Pwd" type="password"
+					value="<?php echo $vb->Pwd; ?>" class="form-control" />
 			</div>
 		</div>
 		<div class="form-group">
@@ -146,8 +170,7 @@ $(function() {
 			},
 			LName : {
 				required : true,
-				minlength : 6,
-				number : true,
+				minlength : 3,
 			},
 			Email : {
 				required : true,
