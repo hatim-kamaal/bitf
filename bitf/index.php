@@ -498,13 +498,13 @@ class RequestManager {
 
 		$this->filterURI();
 		
-		$url = "/home";
+		$url = "home";
 		if (isset ( $_GET ['url'] )) {
 			$url = $_GET ['url'];
 		}
 		
 		if (strcmp ( $url, "url_403.shtml" ) == 0) {
-			$url = "/error";
+			$url = "error";
 		}
 		
 		// $urlArray = array();
