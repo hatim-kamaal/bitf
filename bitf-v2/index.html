@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html ng-app="app">
+<head>
+
+    <meta charset="utf-8" />
+    <title>GamerLand</title>
+    <link rel="stylesheet" href="static/bootstrap.min.3.3.1.css" />
+    <link rel="stylesheet" href="static/ngtable.min.1.0.0.css" />
+    
+</head>
+<body>
+
+<h1>Burhani IT Fraternity</h1>
+
+    <div class="jumbotron">
+        <div class="container">
+            <div class="col-sm-8 col-sm-offset-2">
+                <div ng-class="{ 'alert': flash, 'alert-success': flash.type === 'success', 'alert-danger': flash.type === 'error' }" ng-if="flash" ng-bind="flash.message"></div>
+                <div ng-view></div>
+            </div>
+        </div>
+    </div>
+
+    <script src="static/jquery-3.1.0.slim.min.js"></script>
+    <script src="static/angular.1.4.2.min.js"></script>
+    <script src="static/angular-route.1.4.2.min.js"></script>
+    <script src="static/angular-cookies.1.4.2.min.js"></script>
+    <script src="static/angular-resource.1.4.2.min.js"></script>
+    <script src="static/ngtable.min.1.0.0.js"></script>
+    
+    <script src="app.js"></script>
+    <script src="app.service.js"></script>
+    <script src="app.controller.js"></script>
+</body>
+</html>

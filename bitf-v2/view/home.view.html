@@ -1,0 +1,17 @@
+<h1>Welcome {{membername}}</h1>
+
+<h3>Donation History</h3>
+
+<table ng-table ="usersTable" class="table table-condensed table-bordered table-striped">
+<tr ng-repeat="user in users">
+<td data-title="'id'"><a href="http://localhost/bitf/bitf-v1/php/Reciept.php?uid={{user.id}}">reciept</a></td>
+<td data-title="'incoming'">{{user.incoming}}</td>
+<td data-title="'outgoing'">{{user.outgoing}}</td>
+<td data-title="'details'">{{user.details}}</td>
+<td data-title="'txndate'">{{user.txndate}}</td>
+<td data-title="'message'">{{user.message}}</td>
+</tr>
+</table>
+
+<p>&nbsp;</p>
+<p><a href="#/login" class="btn btn-primary">Logout</a></p>
