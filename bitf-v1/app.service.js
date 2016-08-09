@@ -40,22 +40,25 @@
 			// callback(response);
 			// });
 
-				$http.get('http://localhost/angjs-omega-gamerland/php/LoginService.php?email='+username+'&code='+password).success(function(response) {
+				$http.get('http://localhost/bitf/bitf-v1/php/LoginService.php?email='+username+'&code='+password).success(function(response) {
 						response = {
 							success : response.data.status,
-							message : response.data.msg
+							message : response.data.msg,
+							udata : response.data.udata
 						};
 						callback(response);
 				
 			}).error( function(response){alert('failed to invoke service')} );
 		}
 
-		function SetCredentials(username, password) {
+		function SetCredentials(username, password, id, fullname) {
 			var authdata = Base64.encode(username + ':' + password);
 
 			$rootScope.globals = {
 				currentUser : {
 					username : username,
+					userid : id,
+					userfullname : fullname,
 					authdata : authdata
 				}
 			};
@@ -70,6 +73,7 @@
 			$cookieStore.remove('globals');
 			$http.defaults.headers.common.Authorization = 'Basic';
 		}
+		
 	}
 
 	// Base64 encoding service used by AuthenticationService

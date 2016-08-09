@@ -10,6 +10,9 @@
 	function HomeController($rootScope, $scope, $http, NgTableParams) {
 
 		var vm = this;
+		$scope.membername = $rootScope.globals.currentUser.userfullname;
+		
+		
 		vm.message = "Here it displays table";
 
 		vm.user = {
@@ -18,10 +21,10 @@
 
 		$http
 				.get(
-						'http://localhost/angjs-omega-gamerland/php/TableExampleService.php')
+						//'http://localhost/angjs-omega-gamerland/php/TableExampleService.php')
+				'http://localhost/bitf/bitf-v1/php/DonationResultService.php?id='+ $rootScope.globals.currentUser.userid)
 				.success(function(response) {
-
-					$scope.users = response.data;
+					$scope.users = response.data.details;
 
 					$scope.usersTable = new NgTableParams({}, {
 						dataset : $scope.users
@@ -50,7 +53,7 @@
 					response) {
 				if (response.success) {
 					AuthenticationService.SetCredentials(vm.username,
-							vm.password);
+							vm.password, response.udata.id, response.udata.fullname);
 					$location.path('/home');
 				} else {
 					FlashService.Error(response.message);

@@ -7,13 +7,13 @@ class PDF extends FPDF
 function Header()
 {
     // Logo
-    //$this->Image('logo.png',10,6,30);
+    //$this->Image('http://localhost/bitf/bitf-v1/php/logo.png',10,6,30);
     // Arial bold 15
     $this->SetFont('Arial','B',15);
     // Move to the right
     $this->Cell(80);
     // Title
-    $this->Cell(30,10,'Title',1,0,'C');
+    $this->Cell(30,10,'Receipt',1,0,'C');
     // Line break
     $this->Ln(20);
 }
@@ -35,6 +35,13 @@ $pdf = new PDF();
 $pdf->AliasNbPages();
 $pdf->AddPage();
 $pdf->SetFont('Times','',12);
-for($i=1;$i<=40;$i++)
-    $pdf->Cell(0,10,'Printing line number '.$i,0,1);
+
+$pdf->Cell(0,10,'------------------------------------------------------------',0,1,'C');
+
+$pdf->Cell(0,10,'|                            Date                           |',0,1,'C');
+
+$pdf->Cell(0,10,'------------------------------------------------------------',0,1,'C');
+
+// for($i=1;$i<=40;$i++)
+//     $pdf->Cell(0,10,'Printing line number '.$i,0,1);
 $pdf->Output();
