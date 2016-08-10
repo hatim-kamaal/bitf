@@ -12,8 +12,10 @@ if( !isset($_GET['id']) ) {
 
 $id = $_GET['id'];
 
-$conn = mysqli_connect ( "localhost", "root", "", "bitf" );
-$msg = "SELECT id, incoming_fund, outgoing_fund, details, txndate, message FROM bitf_account_activity WHERE userid = $id";
+//$conn = mysqli_connect ( "localhost", "root", "", "bitf" );
+include_once("dbconn.php");
+$msg = "SELECT id, incoming_fund, outgoing_fund, details, txndate, message 
+FROM bitf_account_activity WHERE userid = $id LIMIT 100";
 
 $rs = $conn->query ($msg);
 if( isset($rs) ) {

@@ -17,7 +17,8 @@ if( !isset($_GET['uid']) ) {
 
 $id = $_GET['uid'];
 
-$conn = mysqli_connect ( "localhost", "root", "", "bitf" );
+//$conn = mysqli_connect ( "localhost", "root", "", "bitf" );
+include_once("dbconn.php");
 $msg = "SELECT a.id, a.incoming_fund, a.outgoing_fund, a.details, a.txndate, a.message, r.fullname FROM bitf_account_activity a, bitf_human_resource r WHERE a.id = $id AND a.userid = r.id";
 
 $rs = $conn->query ($msg);

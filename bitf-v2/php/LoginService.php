@@ -17,7 +17,8 @@ if( !isset($_GET['code']) ) {
 $email = $_GET['email'];
 $code = $_GET['code'];
 
-$conn = mysqli_connect ( "localhost", "root", "", "bitf" );
+//$conn = mysqli_connect ( "localhost", "root", "", "bitf" );
+include_once("dbconn.php");
 $msg = "SELECT id, fullname FROM bitf_human_resource WHERE emailid = '$email' and userpwd = '$code'";
 $rs = $conn->query ($msg);
 if( isset($rs) ) {
@@ -34,7 +35,7 @@ if( isset($rs) ) {
 	}
 }
 
-//$msg = "Incorrect userid or password";
+$msg = "Incorrect userid or password";
 
 return_with_error:
 $status = false;

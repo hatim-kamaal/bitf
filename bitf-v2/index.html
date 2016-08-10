@@ -3,23 +3,47 @@
 <head>
 
     <meta charset="utf-8" />
-    <title>GamerLand</title>
+    <title>Burhani IT Fraternity</title>
     <link rel="stylesheet" href="static/bootstrap.min.3.3.1.css" />
     <link rel="stylesheet" href="static/ngtable.min.1.0.0.css" />
-    
+<style>
+.navbar-brand>img {
+  height: 100%;
+  padding: 15px;
+  width: 20px;
+}
+</style>    
 </head>
 <body>
 
-<h1>Burhani IT Fraternity</h1>
+	<nav class="navbar navbar-default">
+        <div class="navbar-header">
+          <a href="/"><img class="img-responsive" src="logo.png" alt="Burhani IT Fraternity"></a>
+        </div>
+    </nav>
 
-    <div class="jumbotron">
+<!--nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#"><img src="logo.png"></a>
+    </div>
+    <ul class="nav navbar-nav">
+      <li class="active"><a href="#">Home</a></li>
+      <li><a href="#">Page 1</a></li>
+      <li><a href="#">Page 2</a></li> 
+      <li><a href="#">Page 3</a></li> 
+    </ul>
+  </div>
+</nav-->
+
+    <!-- div class="jumbotron"-->
         <div class="container">
             <div class="col-sm-8 col-sm-offset-2">
                 <div ng-class="{ 'alert': flash, 'alert-success': flash.type === 'success', 'alert-danger': flash.type === 'error' }" ng-if="flash" ng-bind="flash.message"></div>
                 <div ng-view></div>
             </div>
         </div>
-    </div>
+    <!--/div-->
 
     <script src="static/jquery-3.1.0.slim.min.js"></script>
     <script src="static/angular.1.4.2.min.js"></script>

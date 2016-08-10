@@ -40,7 +40,7 @@
 			// callback(response);
 			// });
 
-				$http.get('http://localhost/bitf/bitf-v1/php/LoginService.php?email='+username+'&code='+password).success(function(response) {
+				$http.get('http://member.burhaniit.org/php/LoginService.php?email='+username+'&code='+password).success(function(response) {
 						response = {
 							success : response.data.status,
 							message : response.data.msg,

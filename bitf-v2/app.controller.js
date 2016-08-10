@@ -22,7 +22,7 @@
 		$http
 				.get(
 						//'http://localhost/angjs-omega-gamerland/php/TableExampleService.php')
-				'http://localhost/bitf/bitf-v1/php/DonationResultService.php?id='+ $rootScope.globals.currentUser.userid)
+				'http://member.burhaniit.org/php/DonationResultService.php?id='+ $rootScope.globals.currentUser.userid)
 				.success(function(response) {
 					$scope.users = response.data.details;
 

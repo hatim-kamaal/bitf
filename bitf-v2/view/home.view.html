@@ -1,10 +1,10 @@
-<h1>Welcome {{membername}}</h1>
+Welcome <i>{{membername}}</i>
 
 <h3>Donation History</h3>
 
 <table ng-table ="usersTable" class="table table-condensed table-bordered table-striped">
 <tr ng-repeat="user in users">
-<td data-title="'id'"><a href="http://localhost/bitf/bitf-v1/php/Reciept.php?uid={{user.id}}">reciept</a></td>
+<td data-title="'id'"><a target="bitf_reciept" href="http://member.burhaniit.org/php/Reciept.php?uid={{user.id}}">reciept</a></td>
 <td data-title="'incoming'">{{user.incoming}}</td>
 <td data-title="'outgoing'">{{user.outgoing}}</td>
 <td data-title="'details'">{{user.details}}</td>
