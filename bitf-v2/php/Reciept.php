@@ -54,42 +54,64 @@ if( isset($rs) ) {
 RESULT:
 if( !$error ) {
 
+	//36
+	$hgap = 46;
+	//$lgap = 45;
 
 
 	$pdf = new FPDF();
 	$pdf->AddPage();
-	$pdf->Rect(10,10,190,120);
+	
+	$pdf->Rect(9,9,191,141);
+	$pdf->Rect(10,10,189,139);
+	
+	$pdf->Line(25,33,180,33);
+	
+	
 	$pdf->SetFont('Arial','B',12);
+	$pdf->Image('logo_only.png',59,13,-200);
 	//$pdf->Cell(40,10,'Hello World!');
-	$pdf->Cell(0,20,'ANJUMANE - E - TAHERI BURHANI IT FRATERNITY',0,1,'C');
+	$pdf->Cell(0,30,'AET- BURHANI IT FRATERNITY',0,1,'C');
+	
+	//$pdf->Rect(41,11,128,25);
+	
 	$pdf->SetFont('','');
 	$pdf->Cell(0,10,'Receipt No : ',0,1, 'L');
 
-	Value($pdf, 40,36, $id);
+	//Value($pdf, 40,36, $id);
+	Value($pdf, 40,$hgap, $id);
 
 
 	$pdf->Cell(0,10,'Date : ',0,1,'L');
 
-	Value($pdf, 40,46, $txndate);
+	//Value($pdf, 40,46, $txndate);
+	$hgap+=10;
+	Value($pdf, 40,$hgap, $txndate);
 
 
 	$pdf->Cell(0,10,'  ',0,1,'L');
 
 	$pdf->Cell(0,10,'Received with thanks from Mr/s : ',0,1,'L');
 
-	Value($pdf, 74,66, $name);
+	//Value($pdf, 74,66, $name);
+	$hgap+=20;
+	Value($pdf, 74,$hgap, $name);
 
 	$pdf->Cell(0,10,'the sum of Rupees : ',0,1,'L');
 
-	Value($pdf, 50,76, $incoming);
+	//Value($pdf, 50,76, $incoming);
+	$hgap+=10;
+	Value($pdf, 50,$hgap, $incoming);
 
 	$pdf->Cell(0,10,'by online transaction reference : ',0,1,'L');
 
-	Value($pdf, 72,86, $message);
+	//Value($pdf, 72,86, $message);
+	$hgap+=10;
+	Value($pdf, 72,$hgap, $message);
 
 	$pdf->Cell(0,10,'towards voluntary contribution for child education.',0,1,'L');
 
-	$pdf->Cell(0,30,'Authorized signature.',0,1,'R');
+	$pdf->Cell(0,30,'Authorized signature.  ',0,1,'R');
 
 
 	$pdf->Output();
